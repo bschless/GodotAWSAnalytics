@@ -75,3 +75,23 @@ Once the Lambda function has been created, we need to get the ARN for it for the
 In this example, the function ARN is the string `arn:aws:lambda:us-east-1:123456789123:function:godot-analytics-parser`
 
 ![alt text](https://user-images.githubusercontent.com/255001/37725148-85906038-2cef-11e8-8fee-3fe9eb613ba5.PNG "Take note of the ARN for the Lambda function")
+
+### Phase 3: Create API Gateway and Connect to Lambda Function
+
+Next, we're going to go about creating an HTTPS endpoint that we can call from our game. We will send our analytics data to this endpoint. In turn, the endpoint will forward the data over to our Lambda function.
+
+Before creating an API inside API Gateway, you need to make a small modification to the Swagger document in this repo. Open up the file called swagger-apigateway.json. Find the text that says {your-function-arn-here}, and replace it with the actual ARN of the function from the previous phase, then save the file.
+
+Now, go ahead and create a new API in the API Gateway web console.
+
+![alt text](https://user-images.githubusercontent.com/255001/37734737-3ec9f26c-2d09-11e8-8e98-19ad0380a861.PNG "Create a new API inside the API Gateway console")
+
+After clicking "Create API", you will be asked whether or not you want to import a Swagger file. Select the "Import from Swagger" option, then click the button that says "Select Swagger File" and select the swagger file. You should see something similar to the screenshot below.
+
+![alt text](https://user-images.githubusercontent.com/255001/37735000-092bfadc-2d0a-11e8-9e9a-9ac03568f19d.PNG "Import API from Swagger Document")
+
+If you want great performance around the world at a slightly higher price, you can set the Endpoint Type to be "Edge Optimized". Doing this will create endpoints for your API in various Regions throughout the world, for quicker access to users who live in those regions. You can also just leave it as "Regional", which simply creates a single location for your endpoint in the same Region that the API is created in (us-east-1 in our case), but doing so will mean that users who are accessing your API from a different region than where your API is hosted will have higher latency. This may or may not end up being that important to you.
+
+Go ahead and click on the "Import" button, and your API should be created inside the console.
+
+![alt text](https://user-images.githubusercontent.com/255001/37735629-dfdd85d6-2d0b-11e8-84ec-2393ddb7ccdc.PNG "Finalize the import")
