@@ -58,6 +58,16 @@ Navigate to where you cloned this branch, and go into the Lambda folder. In a te
 
 This will install the necessary node modules for the Lambda function, including our deployment tool Claudia. Once this is done, upload the Lambda function to AWS using the following command:
 
-`` ./node_modules/.bin/claudia create --region -us-east-1 --handler index.handler --name "godot-analytics-parser" --memory 3008 --timeout 30 ``
+`` npm run create ``
 
-This will create a new Lambda function in our AWS account and configure it for us.
+This will create a new Lambda function in our AWS account and configure it for us using Claudia. Once this is complete, you should see output similar to this:
+
+![alt text](https://user-images.githubusercontent.com/255001/37724440-03ef08aa-2cee-11e8-85e9-a9318bcf8d20.PNG "Lambda function creation success results")
+
+This informs us that Claudia successfully created a new Lambda function in the us-east-1 region called "godot-analytics-parser" and assigned it the role "godot-analytics-parser-executor". Essentially, this was a success. 
+
+Once the Lambda function has been created, we need to get the ARN for it for the next phase. You can get the ARN for the function by navigating to the Lambda dashboard in AWS (make sure you're in the correct region). Then, click on the name of the new function to be taken to the function's profile page. From here, make note of the ARN, which can be found in the upper-right corner. 
+
+In this example, the function ARN is the string `arn:aws:lambda:us-east-1:123456789123:function:godot-analytics-parser`
+
+![alt text](https://user-images.githubusercontent.com/255001/37725148-85906038-2cef-11e8-8fee-3fe9eb613ba5.PNG "Take note of the ARN for the Lambda function")
