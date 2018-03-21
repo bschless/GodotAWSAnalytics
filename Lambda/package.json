@@ -1,0 +1,17 @@
+{
+  "name": "godot-analytics-parser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "create": "./node_modules/.bin/claudia create --region us-east-1 --handler index.handler --memory 3008 --timeout 30"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "claudia": "^3.3.1"
+  },
+  "optionalDependencies": {
+    "aws-sdk": "^2.212.1"
+  }
+}
