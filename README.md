@@ -123,3 +123,29 @@ Once the API is deployed, click the "Stages" link in the left sidebar, then clic
 ![alt text](https://user-images.githubusercontent.com/255001/37738980-f3aa17fa-2d15-11e8-8dcf-f3a243ef4b38.PNG "Click 'Stages', then click 'Latest', and take note of the Invoke URL")
 
 ### Phase 4: Integrate With Godot
+
+To get this all integrated with your Godot game, create a new Node in your main scene of the plain "Node" type called Analytics. Then attach the script from this repo called "Analytics.gd" to this node. Once you've done that, inspect the Node and fill out the values accordingly. You will need:
+
+1) The Federated Identity Pool Id. You can find this by going to the Cognito dashboard in the AWS console, click "Manage Federated Identities", click the name of your identity pool, then find the identity pool id in the URL bar of the web browser. Or click "Edit identity pool" at the top right. The identity pool id will look somethingl like `us-east-1:df6fa3ce-c781-4b4d-b3z4-8f779af8dd90`.
+2) Your AWS account id. Find this by clicking on your name, then "My Account in most AWS console pages.
+3) The app id for the app. Find this by going to the Pinpoint dashboard. You should see your app listed along with its app id.
+4) The api endpoint. This is the Ivoke URL from the last phase, plus "/analytics". So the full api endpoint would be similar to `https://ye9klb9dvk.execute-api.us-east-1.amazonaws.com/latest/analytics`.
+
+Optionally, you can provide the following values in the inspector:
+* App Package Name - the package name used for your game, whatever you've decided it should be
+* App Title - the name of your game
+* Api Key - If you've done some extra work and secured the api with an api key, provide that key here
+* App Version Name - Can be anything, usually something like "1.0.0"
+* App Version Code - The number of versions that have ever been created, like 42 or how many have ever been created
+
+#### Sessions
+
+A session will start automatically when the app starts, and will end in one of two ways: Either when the app is closed, or when the app has been sent to the background for more than five seconds (a new session will start when the user comes back).
+
+#### Recording Events
+
+Once you've attached the script to the node and filled out the values in the inspector, you're ready to start recording events. To record an event, get a reference to the node with something like `var analytics = get_node('Analytics')`. Then call the record_event function like this: `analytics.record_event('My Event')`
+
+You can also include attributes and metrics in your event like this: `analytics.record_event('Collect Coin', {world = "grasslands"}, {coin_value = 50})`
+
+After about an hour, you should start seeing session and event data within the Mobile Analytics console.
