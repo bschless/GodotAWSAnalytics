@@ -5,7 +5,12 @@ A collection of client and server code that can be used to add AWS Mobile Analyt
 * No special Godot modules required
 * Supports iOS, Android, Amazon Fire, WebGL, Windows, Mac, and Linux
 
+## Requirements
+* Access to a console/terminal with NodeJS
+
 ## Instructions
+
+### Phase 1: Create App Within AWS Mobile Hub
 
 The first thing you'll want to do is create a new app inside the AWS Mobile Hub within your Amazon web console.
 ![alt text](https://user-images.githubusercontent.com/255001/37718579-435fd842-2ce0-11e8-956a-37b81bf7d53b.PNG "Create a new app inside the AWS Mobile Hub")
@@ -38,3 +43,21 @@ Verify that these resources were created.
 * The Federated User Pool should have a name similar to "mygodotgame_MOBILEHUB_1825323477"
 * The IAM Role should have a similar name to "mygodotgame_unauth_MOBILEHUB_1825323477"
 * The Mobile Analytics/Pinpoint dashboards should now list an app with a name simlar to "mygodotgame_MobileHub"
+
+### Phase 2: Create Lambda Function to Parse Analytics Events
+
+Using Amazon's own Rest API's generally require that all reqeusts be signed using Amazon's Signature V4 method: https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html
+
+Due to the fact that the Godot engine does not include a Crypto library, and also due to the fact that I personally lack the chops to build the needed crypto libs in gdscript myself, we will need to use a custom HTTPS endpoint that we will send event data to. This endpoint will forward the event data over to a Lambda function, which will take this data and make the call to the AWS Mobile Analytics API using the AWS SDK, which automatically signs requests with Signature v4.
+
+So, the next step then, is to set up the Lambda function that will be in charge of parsing our events and making the calls to Mobile Analytics. These instructions make use of a wonderful NodeJS library called Claudia, which we will use to create and upload our Lambda function to AWS for us. Without Claudia, we would have to manually zip up our Lambda code and its dependencies, then upload the zip file to AWS through the AWS console, which can be laborous.
+
+Navigate to where you cloned this branch, and go into the Lambda folder. In a terminal window, run this command:
+
+``` npm install ```
+
+This will install the necessary node modules for the Lambda function, including our deployment tool Claudia. Once this is done, upload the Lambda function to AWS using the following command:
+
+`` ./node_modules/.bin/claudia create --region -us-east-1 --handler index.handler --name "godot-analytics-parser" --memory 3008 --timeout 30 ``
+
+This will create a new Lambda function in our AWS account and configure it for us.
