@@ -95,3 +95,31 @@ If you want great performance around the world at a slightly higher price, you c
 Go ahead and click on the "Import" button, and your API should be created inside the console.
 
 ![alt text](https://user-images.githubusercontent.com/255001/37735629-dfdd85d6-2d0b-11e8-84ec-2393ddb7ccdc.PNG "Finalize the import")
+
+At this point, our api has been imported, but not deployed yet. Additionally, while our "analytics" endpoint has been set up to integrate with our Lambda function, it has not yet been granted permission to actually invoke it yet.
+
+To give the API permission to call the Lambda function, click on the POST method of the "/analytics" resource in the Resources pane, then click "Integration Request."
+
+![alt text](https://user-images.githubusercontent.com/255001/37738493-69da9dc0-2d14-11e8-8f04-dfa26b4f2528.PNG "Edit Integration Request Settings")
+
+Within the Integration Request settings, click the pencil next to the name of the Lambda function. Then, simply click the checkmark that just appeared. You will be prompted to grant the API permission to invoke the Lambda function. Click OK.
+
+![alt text](https://user-images.githubusercontent.com/255001/37738664-e63f432a-2d14-11e8-88f1-3b1d29050f95.PNG "Click the pencil next to the Lambda function name")
+---
+![alt text](https://user-images.githubusercontent.com/255001/37738680-f3594c36-2d14-11e8-9adc-15de7cd584af.PNG "Click the checkmark that just appeared")
+---
+![alt text](https://user-images.githubusercontent.com/255001/37738683-f614c888-2d14-11e8-9f91-0fdcd0f0fbe0.PNG "Click OK to grant permission")
+
+Now that the API has permission to invoke the Lambda function, it's ready to be deployed. In the Resources pane, click the Action button, then click "Deploy API"
+
+![alt text](https://user-images.githubusercontent.com/255001/37738966-ec0b5b08-2d15-11e8-988f-0cf41b065972.PNG "Click 'Deploy API' in the drop-down menu that appears when you click the 'Action' button")
+
+APIs get deployed to a stage. Since there aren't any stages yet, you will be asked to create a new one. The example uses "latest" as the stage name. You can also provide a description if you want. When you're ready, click "Deploy."
+
+![alt text](https://user-images.githubusercontent.com/255001/37738978-f0cffad6-2d15-11e8-89da-d9110ec8ca95.PNG "Give the stage a name and click Deploy")
+
+Once the API is deployed, click the "Stages" link in the left sidebar, then click on the "latest" stage. Take note of the Invoke URL, you will need this in the next phase.
+
+![alt text](https://user-images.githubusercontent.com/255001/37738980-f3aa17fa-2d15-11e8-8dcf-f3a243ef4b38.PNG "Click 'Stages', then click 'Latest', and take note of the Invoke URL")
+
+### Phase 4: Integrate With Godot
