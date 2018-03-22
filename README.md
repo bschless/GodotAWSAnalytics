@@ -61,7 +61,7 @@ Using Amazon's own Rest API's generally require that all reqeusts be signed usin
 
 Due to the fact that the Godot engine does not include a Crypto library, and also due to the fact that I personally lack the chops to build the needed crypto libs in gdscript myself, we will need to use a custom HTTPS endpoint that we will send event data to. This endpoint will forward the event data over to a Lambda function, which will take this data and make the call to the AWS Mobile Analytics API using the AWS SDK, which automatically signs requests with Signature v4.
 
-So, the next step then, is to set up the Lambda function that will be in charge of parsing our events and making the calls to Mobile Analytics. These instructions make use of a wonderful NodeJS library called Claudia, which we will use to create and upload our Lambda function to AWS for us. Without Claudia, we would have to manually zip up our Lambda code and its dependencies, then upload the zip file to AWS through the AWS console, which can be laborous.
+So, the next step then, is to set up the Lambda function that will be in charge of parsing our events and making the calls to Mobile Analytics. These instructions make use of a wonderful NodeJS library called [Claudia](https://claudiajs.com/), which we will use to create and upload our Lambda function to AWS for us. Without Claudia, we would have to manually zip up our Lambda code and its dependencies, then upload the zip file to AWS through the AWS console, which can be laborous.
 
 Navigate to where you cloned this branch, and go into the Lambda folder. In a terminal window, run this command:
 
