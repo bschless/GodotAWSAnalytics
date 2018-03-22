@@ -30,7 +30,7 @@ Give your app an appropriate title.
 
 ![alt text](https://user-images.githubusercontent.com/255001/37718797-c740d5f8-2ce0-11e8-85ae-dfe4e87ebb96.PNG "Give your app a name")
 
-Select a platform for your app. Make sure you select either iOS or Android, it doesn't matter which one you pick -- our game will work with both of them and more. It's job is mostly to tell AWS Mobile Hub which type of projects to generate source-code for, but we aren't using any of their generated code.
+Select a platform for your app. Make sure you select either iOS or Android, it doesn't matter which one you pick -- our game will work with both of them and more. Its job is mostly to tell AWS Mobile Hub which type of projects to generate source-code for, but we aren't using any of their generated code.
 
 ![alt text](https://user-images.githubusercontent.com/255001/37719019-4a7be14c-2ce1-11e8-8902-573bae057bda.PNG "Select a platform")
 
