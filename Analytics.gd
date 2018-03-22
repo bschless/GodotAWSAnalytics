@@ -168,14 +168,17 @@ func _make_request(request_data, callback):
 		_request_credentials_for_identity()
 	else:
 		_request.connect("request_completed", self, callback)
-		_request.request(api_endpoint, ["x-api-key: OM14h1s2bu113qxMba0hf3JehGQx8V4ta1c5ewaw", "Content-Type: application/json"], true, HTTPClient.METHOD_POST, JSON.print(request_data))
+		var headers = ["Content-Type: application/json"]
+		if api_key.length() > 1:
+			headers.append("x-api-key: "+api_key)
+		_request.request(api_endpoint, headers, true, HTTPClient.METHOD_POST, JSON.print(request_data))
 	pass
 func _token_valid(request_data):
 	var current_time = OS.get_unix_time_from_datetime(OS.get_date(true))
 	if current_time > _settings.identity.expiration:
 		return false
 	return true
-func record_event(event_type, attributes, metrics):
+func record_event(event_type, attributes = {}, metrics = {}):
 	var request_data = _create_request_data(event_type, attributes, metrics)
 	if log_to_output:
 		print("sending event")
