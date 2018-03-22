@@ -9,8 +9,9 @@ A collection of client and server code that can be used to add AWS Mobile Analyt
 * No special Godot modules required
 * Supports iOS, Android, Amazon Fire, WebGL, Windows, Mac, and Linux
 
-## Missing Features
-* Support for Monetization Events
+## Planned Features
+* Monetization Events
+* Batching events
 
 ## Roadmap
 * Full Pinpoint support including push notifications
