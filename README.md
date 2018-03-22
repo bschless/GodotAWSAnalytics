@@ -50,7 +50,7 @@ At this point, AWS has automatically created a few resources we will need to mak
 * An IAM Role that gives our players permission to make calls to the Analytics API
 * A new app entry in Mobile Analytics for this app (as well as one in Pinpoint)
 
-Verify that these resources were created.
+You can verify that these resources were created:
 * The Federated User Pool should have a name similar to "mygodotgame_MOBILEHUB_1825323477"
 * The IAM Role should have a similar name to "mygodotgame_unauth_MOBILEHUB_1825323477"
 * The Mobile Analytics/Pinpoint dashboards should now list an app with a name simlar to "mygodotgame_MobileHub"
