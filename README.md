@@ -17,6 +17,7 @@ A collection of client and server code that can be used to add AWS Mobile Analyt
 
 ## Requirements
 * Access to a console/terminal with NodeJS
+* A Godot installation that has been setup to work with SSL: http://docs.godotengine.org/en/3.0/tutorials/networking/ssl_certificates.html
 
 ## Instructions
 
