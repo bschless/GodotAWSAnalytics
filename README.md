@@ -135,7 +135,7 @@ Once the API is deployed, click the "Stages" link in the left sidebar, then clic
 To get this all integrated with your Godot game, create a new Node in your main scene of the plain "Node" type called Analytics. Then attach the script from this repo called "Analytics.gd" to this node. Once you've done that, inspect the Node and fill out the values accordingly. You will need:
 
 1) The Federated Identity Pool Id. You can find this by going to the Cognito dashboard in the AWS console, click "Manage Federated Identities", click the name of your identity pool, then find the identity pool id in the URL bar of the web browser. Or click "Edit identity pool" at the top right. The identity pool id will look something like `us-east-1:df6fa3ce-c781-4b4d-b3z4-8f779af8dd90`.
-2) Your AWS account id. Find this by clicking on your name, then "My Account in most AWS console pages.
+2) Your AWS account id. Find this by clicking on your name, then "My Account" at the top of most AWS console pages.
 3) The app id for the app. Find this by going to the Pinpoint dashboard. You should see your app listed along with its app id.
 4) The api endpoint. This is the Ivoke URL from the last phase, plus "/analytics". So the full api endpoint would be similar to `https://ye3fl59dvk.execute-api.us-east-1.amazonaws.com/latest/analytics`.
 
